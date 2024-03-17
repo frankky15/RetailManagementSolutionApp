@@ -1,0 +1,11 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Test";
+}
+
+<div class="text-center">
+    <h3 class="display-4">@Model.ProductName</h1>
+    <h5>id: @Model.ProductId</h5>
+    <h5>Price: @Model.ListPrice</h5>
+    <h5>Brand: @Model.Brand.BrandName</h5>
+</div>

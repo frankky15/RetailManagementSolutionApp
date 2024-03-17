@@ -8,7 +8,7 @@ using System;
 
 namespace RMS.Data.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(AuthenticationContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

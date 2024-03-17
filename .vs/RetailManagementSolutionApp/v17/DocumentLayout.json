@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F38F97DF-F36C-494D-A45B-2EC6085AECFD}|RMS\\RMS.csproj|e:\\visualstudio projects\\retailmanagementsolutionapp\\rms\\data\\authenticationcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F38F97DF-F36C-494D-A45B-2EC6085AECFD}|RMS\\RMS.csproj|solutionrelative:rms\\data\\authenticationcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F38F97DF-F36C-494D-A45B-2EC6085AECFD}|RMS\\RMS.csproj|e:\\visualstudio projects\\retailmanagementsolutionapp\\rms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F38F97DF-F36C-494D-A45B-2EC6085AECFD}|RMS\\RMS.csproj|solutionrelative:rms\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F38F97DF-F36C-494D-A45B-2EC6085AECFD}|RMS\\RMS.csproj|e:\\visualstudio projects\\retailmanagementsolutionapp\\rms\\data\\migrations\\applicationdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F38F97DF-F36C-494D-A45B-2EC6085AECFD}|RMS\\RMS.csproj|solutionrelative:rms\\data\\migrations\\applicationdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F38F97DF-F36C-494D-A45B-2EC6085AECFD}|RMS\\RMS.csproj|e:\\visualstudio projects\\retailmanagementsolutionapp\\rms\\data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F38F97DF-F36C-494D-A45B-2EC6085AECFD}|RMS\\RMS.csproj|solutionrelative:rms\\data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F38F97DF-F36C-494D-A45B-2EC6085AECFD}|RMS\\RMS.csproj|e:\\visualstudio projects\\retailmanagementsolutionapp\\rms\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{F38F97DF-F36C-494D-A45B-2EC6085AECFD}|RMS\\RMS.csproj|solutionrelative:rms\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{F38F97DF-F36C-494D-A45B-2EC6085AECFD}|RMS\\RMS.csproj|e:\\visualstudio projects\\retailmanagementsolutionapp\\rms\\repository\\repositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F38F97DF-F36C-494D-A45B-2EC6085AECFD}|RMS\\RMS.csproj|solutionrelative:rms\\repository\\repositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F38F97DF-F36C-494D-A45B-2EC6085AECFD}|RMS\\RMS.csproj|e:\\visualstudio projects\\retailmanagementsolutionapp\\rms\\repository\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F38F97DF-F36C-494D-A45B-2EC6085AECFD}|RMS\\RMS.csproj|solutionrelative:rms\\repository\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,40 +39,79 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DataContext.cs",
-              "DocumentMoniker": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\Data\\DataContext.cs",
-              "RelativeDocumentMoniker": "RMS\\Data\\DataContext.cs",
-              "ToolTip": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\Data\\DataContext.cs",
-              "RelativeToolTip": "RMS\\Data\\DataContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-17T19:41:45.43Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\appsettings.json",
-              "RelativeDocumentMoniker": "RMS\\appsettings.json",
-              "ToolTip": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\appsettings.json",
-              "RelativeToolTip": "RMS\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-03-17T19:37:50.363Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\Program.cs",
               "RelativeDocumentMoniker": "RMS\\Program.cs",
               "ToolTip": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\Program.cs",
               "RelativeToolTip": "RMS\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAaAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAABRAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-17T19:34:40.605Z",
+              "WhenOpened": "2024-03-17T20:19:32.233Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ApplicationDbContextModelSnapshot.cs",
+              "DocumentMoniker": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\Data\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "RMS\\Data\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "ToolTip": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\Data\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "RelativeToolTip": "RMS\\Data\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-17T20:19:05.045Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthenticationContext.cs",
+              "DocumentMoniker": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\Data\\AuthenticationContext.cs",
+              "RelativeDocumentMoniker": "RMS\\Data\\AuthenticationContext.cs",
+              "ToolTip": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\Data\\AuthenticationContext.cs",
+              "RelativeToolTip": "RMS\\Data\\AuthenticationContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-17T20:16:05.523Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RepositoryBase.cs",
+              "DocumentMoniker": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\Repository\\RepositoryBase.cs",
+              "RelativeDocumentMoniker": "RMS\\Repository\\RepositoryBase.cs",
+              "ToolTip": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\Repository\\RepositoryBase.cs",
+              "RelativeToolTip": "RMS\\Repository\\RepositoryBase.cs",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAAAFQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-17T20:09:05.533Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\Repository\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "RMS\\Repository\\ProductRepository.cs",
+              "ToolTip": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\Repository\\ProductRepository.cs",
+              "RelativeToolTip": "RMS\\Repository\\ProductRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-17T20:09:00.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DataContext.cs",
+              "DocumentMoniker": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\Data\\DataContext.cs",
+              "RelativeDocumentMoniker": "RMS\\Data\\DataContext.cs",
+              "ToolTip": "E:\\VisualStudio Projects\\RetailManagementSolutionApp\\RMS\\Data\\DataContext.cs",
+              "RelativeToolTip": "RMS\\Data\\DataContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-17T20:00:52.962Z",
               "EditorCaption": ""
             }
           ]

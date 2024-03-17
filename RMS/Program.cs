@@ -1,18 +1,31 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RMS.Data;
+using RMS.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<DataContext>(options =>
+builder.Services.AddDbContext<AuthenticationContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<DataContext>();
+    .AddEntityFrameworkStores<AuthenticationContext>();
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseSqlServer(connectionString));
 builder.Services.AddControllersWithViews();
+//Repository
+builder.Services.AddTransient<IBrandRepository, BrandRepository>();
+builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
+builder.Services.AddTransient<IOrderItemRepository, OrderItemRepository>();
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
+builder.Services.AddTransient<IStaffRepository, StaffRepository>();
+builder.Services.AddTransient<IStockRepository, StockRepository>();
+builder.Services.AddTransient<IStoreRepository, StoreRepository>();
 
 var app = builder.Build();
 
