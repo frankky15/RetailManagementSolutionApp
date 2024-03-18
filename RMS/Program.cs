@@ -12,6 +12,7 @@ builder.Services.AddDbContext<AuthenticationContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AuthenticationContext>();
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(connectionString));
@@ -52,5 +53,40 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+using (var scope = app.Services.CreateScope()) // Seed Roles
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+    var roles = new[] { "Admin", "StoreManager", "ProductManager", "StockManager", "Cashier" };
+
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+            await roleManager.CreateAsync(new IdentityRole(role));
+    }
+}
+
+using (var scope = app.Services.CreateScope()) // Whitelist Admins
+{
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+    var adminsWhitelist = new[] { "admin1@admin.com" };
+
+    foreach (var admin in adminsWhitelist)
+    {
+        var user = await userManager.FindByEmailAsync(admin);
+
+        if (user == null)
+        {
+            Console.WriteLine($"Error: There was a problem while trying to whitelist admin account, email '{admin}' was not found in the db.");
+            continue;
+        }
+
+        if (!await userManager.IsInRoleAsync(user, "Admin"))
+            await userManager.AddToRoleAsync(user, "Admin");
+    }
+}
+
 
 app.Run();
