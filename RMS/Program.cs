@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using RMS.Controllers;
 using RMS.Data;
+using RMS.Models;
 using RMS.Repository;
 using RMS.Services;
 
@@ -90,6 +92,46 @@ using (var scope = app.Services.CreateScope()) // Whitelist Admins
             await userManager.AddToRoleAsync(user, "Admin");
     }
 }
+
+// using (var scope = app.Services.CreateScope()) // This is to fix an issue with the seeding of the stock...
+// {
+//     var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
+
+//     var productswithbadstock = dataContext.Products.Where(p => p.Stocks.Count() < dataContext.Stores.Count()).ToList();
+
+//     var stores = dataContext.Stores.ToList();
+
+//     foreach (var product in productswithbadstock)
+//     {
+//         foreach (var store in stores)
+//         {
+//             var stock = new Stock
+//             {
+//                 StoreId = store.StoreId,
+//                 ProductId = product.ProductId,
+//                 Quantity = 0
+//             };
+
+//             try
+//             {
+//                 dataContext.Set<Stock>().Add(stock);
+//             }
+//             catch (Exception ex)
+//             {
+//                 Console.WriteLine("Error: " + ex);
+//             }
+//         }
+
+//         try
+//         {
+//             dataContext.SaveChanges();
+//         }
+//         catch (Exception ex)
+//         {
+//             Console.WriteLine("Error: " + ex);
+//         }
+//     }
+// }
 
 
 app.Run();
