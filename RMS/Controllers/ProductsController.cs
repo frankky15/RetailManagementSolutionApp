@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Build.Evaluation;
-using Microsoft.EntityFrameworkCore;
-using Mono.TextTemplating;
-using RMS.Data;
 using RMS.Models;
-using RMS.Repository;
 using RMS.Services;
 
 namespace RMS.Controllers
@@ -89,7 +79,6 @@ namespace RMS.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Products/Delete/5
         public IActionResult Delete(int id)
         {
             var product = _productionService.GetProductById(id);

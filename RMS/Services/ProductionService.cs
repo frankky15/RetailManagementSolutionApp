@@ -41,6 +41,9 @@ public class ProductionService : IProductionService
 
     public Product GetProductById(int id)
     {
+        if (!_productRepository.IdExists(id))
+            return null;
+
         return _productRepository.Get(p => p.ProductId == id)
             .Include(p => p.Brand)
             .Include(p => p.Category)
@@ -79,6 +82,26 @@ public class ProductionService : IProductionService
             .Include(s => s.Store);
     }
 
+    public IEnumerable<Stock> GetStocksWhere(Expression<Func<Stock, bool>> where)
+    {
+        return _stockRepository.Get(where)
+            .Include(s => s.Product)
+            .Include(s => s.Store);
+    }
+
+    public Stock GetStockFrom(int productId, int storeId)
+    {
+        if (!_productRepository.IdExists(productId))
+            return null;
+
+        if (!_storeRepository.IdExists(storeId))
+            return null;
+
+        var stock = _stockRepository.Get(s => s.ProductId == productId && s.StoreId == storeId).First();
+
+        return stock;
+    }
+
     public bool UpdateStock(Stock stock)
     {
         if (!_stockRepository.Update(stock))
@@ -89,29 +112,10 @@ public class ProductionService : IProductionService
 
     public bool UpdateStock(int productId, int storeId, int quantity)
     {
-        if (!_productRepository.IdExists(productId))
+        var stock = GetStockFrom(productId, storeId);
+
+        if (stock == null)
             return false;
-
-        if (!_storeRepository.IdExists(storeId))
-            return false;
-
-        var stocks = _stockRepository.Get(s => s.ProductId == productId && s.StoreId == storeId);
-        if (!stocks.Any())
-        {
-            var newStock = new Stock
-            {
-                ProductId = productId,
-                StoreId = storeId,
-                Quantity = 0
-            };
-
-            if (!_stockRepository.Add(newStock))
-                return false;
-
-            stocks = _stockRepository.Get(s => s.ProductId == productId && s.StoreId == storeId);
-        }
-
-        var stock = stocks.First();
 
         stock.Quantity = quantity;
 
@@ -135,6 +139,9 @@ public class ProductionService : IProductionService
 
     public Brand GetBrandById(int id)
     {
+        if (!_brandRepository.IdExists(id))
+            return null;
+
         return _brandRepository.Get(b => b.BrandId == id)
             .Include(b => b.Products).First();
     }
@@ -177,6 +184,9 @@ public class ProductionService : IProductionService
 
     public Category GetCategoryById(int id)
     {
+        if (!_categoryRepository.IdExists(id))
+            return null;
+
         return _categoryRepository.Get(c => c.CategoryId == id)
             .Include(c => c.Products).First();
     }
@@ -215,6 +225,8 @@ public interface IProductionService
     bool DeleteProduct(Product product);
     bool UpdateProduct(Product product);
     IEnumerable<Stock> GetStocks();
+    IEnumerable<Stock> GetStocksWhere(Expression<Func<Stock, bool>> where);
+    Stock GetStockFrom(int productId, int storeId);
     bool UpdateStock(Stock stock);
     bool UpdateStock(int productId, int storeId, int quantity);
     IEnumerable<Brand> GetBrands();

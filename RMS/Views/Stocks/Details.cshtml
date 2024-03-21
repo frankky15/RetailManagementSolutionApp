@@ -1,0 +1,36 @@
+﻿@model RMS.Models.Product
+
+@{
+    ViewData["Title"] = "Other Stores";
+}
+
+<h3>Product: @Model.ProductName (Id:@Model.ProductId) Stock</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                StoreId
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Stocks)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.StoreId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
