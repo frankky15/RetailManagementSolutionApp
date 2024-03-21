@@ -1,14 +1,9 @@
-﻿using RMS.Interfaces;
+﻿namespace RMS.Models;
 
-namespace RMS.Models;
-
-public partial class Store : IEntityModel
+public partial class Store : EntityModel
 {
-    public bool IsValid()
-    {
-        if (StoreId == 0)
-            return false;
-            
+    public override bool IsValid()
+    {            
         if (string.IsNullOrEmpty(StoreName))
             return false;
 

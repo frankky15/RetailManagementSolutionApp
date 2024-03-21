@@ -1,14 +1,9 @@
-﻿using RMS.Interfaces;
+﻿namespace RMS.Models;
 
-namespace RMS.Models;
-
-public partial class Staff : IEntityModel
+public partial class Staff : EntityModel
 {
-    public bool IsValid()
-    {
-        if (StaffId == 0)
-            return false;
-        
+    public override bool IsValid()
+    {        
         if (StoreId == 0)
             return false;
         

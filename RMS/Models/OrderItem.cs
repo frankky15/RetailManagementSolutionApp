@@ -1,11 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
-using RMS.Interfaces;
+﻿namespace RMS.Models;
 
-namespace RMS.Models;
-
-public partial class OrderItem : IEntityModel
+public partial class OrderItem : EntityModel
 {
-    public bool IsValid()
+    public override bool IsValid()
     {
         if (OrderId == 0)
             return false;

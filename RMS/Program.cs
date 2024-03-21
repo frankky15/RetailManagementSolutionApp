@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RMS.Data;
 using RMS.Repository;
+using RMS.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,8 @@ builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IStaffRepository, StaffRepository>();
 builder.Services.AddTransient<IStockRepository, StockRepository>();
 builder.Services.AddTransient<IStoreRepository, StoreRepository>();
+//Service
+builder.Services.AddTransient<IProductionService, ProductionService>();
 
 var app = builder.Build();
 

@@ -1,18 +1,26 @@
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore.Metadata;
 using RMS.Data;
 using RMS.Interfaces;
+using RMS.Models;
 
 namespace RMS.Repository;
 
-public class RepositoryBase<T> : IRepository<T> where T : class
+public class RepositoryBase<T> : IRepository<T> where T : EntityModel
 {
-    private readonly DataContext _dataContext;
+    protected readonly DataContext _dataContext;
     public RepositoryBase(DataContext dataContext)
     {
         _dataContext = dataContext;
     }
-    public bool Add(T entity)
+    public virtual bool Add(T entity)
     {
+        if (!entity.IsValid())
+        {
+            Console.WriteLine("Repository/Error: There was an error while adding entity, The entity is not valid.");
+            return false;
+        }
+
         try
         {
             _dataContext.Set<T>().Add(entity);
@@ -26,7 +34,7 @@ public class RepositoryBase<T> : IRepository<T> where T : class
         }
     }
 
-    public bool Delete(T entity)
+    public virtual bool Delete(T entity)
     {
         try
         {
@@ -41,7 +49,7 @@ public class RepositoryBase<T> : IRepository<T> where T : class
         }
     }
 
-    public bool Delete(Expression<Func<T, bool>> where)
+    public virtual bool Delete(Expression<Func<T, bool>> where)
     {
         try
         {
@@ -57,11 +65,11 @@ public class RepositoryBase<T> : IRepository<T> where T : class
         }
     }
 
-    public ICollection<T> Get(Expression<Func<T, bool>> where)
+    public virtual IQueryable<T> Get(Expression<Func<T, bool>> where)
     {
         try
         {
-            return _dataContext.Set<T>().Where(where).ToList();
+            return _dataContext.Set<T>().Where(where);
         }
         catch (Exception ex)
         {
@@ -70,11 +78,11 @@ public class RepositoryBase<T> : IRepository<T> where T : class
         }
     }
 
-    public ICollection<T> GetAll()
+    public virtual IQueryable<T> GetAll()
     {
         try
         {
-            return _dataContext.Set<T>().ToList();
+            return _dataContext.Set<T>();
         }
         catch (Exception ex)
         {
@@ -83,7 +91,7 @@ public class RepositoryBase<T> : IRepository<T> where T : class
         }
     }
 
-    public T GetById(int id)
+    public virtual T GetById(int id)
     {
         try
         {
@@ -96,7 +104,7 @@ public class RepositoryBase<T> : IRepository<T> where T : class
         }
     }
 
-    public bool Update(T entity)
+    public virtual bool Update(T entity)
     {
         try
         {
@@ -109,5 +117,13 @@ public class RepositoryBase<T> : IRepository<T> where T : class
             Console.WriteLine($"Repository/Error: There was an error while updating entity. Exeption: {ex.Message}");
             return false;
         }
+    }
+
+    public virtual bool IdExists(int id)
+    {
+        if (GetById(id) == null)
+            return false;
+
+        return true;
     }
 }

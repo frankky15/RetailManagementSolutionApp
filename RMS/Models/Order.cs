@@ -1,14 +1,9 @@
-﻿using RMS.Interfaces;
+﻿namespace RMS.Models;
 
-namespace RMS.Models;
-
-public partial class Order : IEntityModel
+public partial class Order : EntityModel
 {
-    public bool IsValid()
+    public override bool IsValid()
     {
-        if (OrderId == 0)
-            return false;
-
         if (StoreId == 0)
             return false;
 

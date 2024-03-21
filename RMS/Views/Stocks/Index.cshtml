@@ -1,0 +1,50 @@
+﻿@model IEnumerable<RMS.Models.Product>
+
+@{
+    ViewData["Title"] = "Stock";
+}
+
+<h1>Stock</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                Stock
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            var stock = 0;
+            if (item.Stocks.ToList().Any())
+                stock = item.Stocks.ToList()[0].Quantity ?? 0;
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @stock
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProductId">Details</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

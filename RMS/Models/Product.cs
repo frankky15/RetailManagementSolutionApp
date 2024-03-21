@@ -1,14 +1,9 @@
-﻿using RMS.Interfaces;
+﻿namespace RMS.Models;
 
-namespace RMS.Models;
-
-public partial class Product : IEntityModel
+public partial class Product : EntityModel
 {
-    public bool IsValid()
+    public override bool IsValid()
     {
-        // if (ProductId == 0)
-        //     return false;
-
         if (BrandId == 0)
             return false;
 

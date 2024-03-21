@@ -1,14 +1,9 @@
-﻿using RMS.Interfaces;
+﻿namespace RMS.Models;
 
-namespace RMS.Models;
-
-public partial class Category : IEntityModel
+public partial class Category : EntityModel
 {
-    public bool IsValid()
+    public override bool IsValid()
     {
-        if (CategoryId == 0)
-            return false;
-
         if (string.IsNullOrEmpty(CategoryName))
             return false;
 
