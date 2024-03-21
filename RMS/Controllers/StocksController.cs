@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using NuGet.Configuration;
 using RMS.Models;
 using RMS.Services;
 
@@ -19,7 +17,6 @@ namespace RMS.Controllers
 
         public IActionResult Index()
         {
-            // var stocks = _productionService.GetStocks();
             var storeId = 1; // Change based on the user's store.
             var stocks = _productionService.GetStocksWhere(s => s.StoreId == storeId);
             return View(stocks);
