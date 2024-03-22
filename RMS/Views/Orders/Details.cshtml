@@ -1,0 +1,166 @@
+﻿@model RMS.Models.Order
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderId)
+        </dd>
+        @if (Model.Customer != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Customer.CustomerId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Customer.CustomerId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Customer.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Customer.Email)
+            </dd>
+
+            <div>
+                <a asp-controller="Customers" asp-action="Details" asp-route-id="@Model?.CustomerId">Customer Details</a>
+            </div>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderStatus)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RequiredDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RequiredDate)
+        </dd>
+        @if (Model.ShippedDate != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ShippedDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ShippedDate)
+            </dd>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StoreId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StoreId)
+        </dd>
+
+        <div>
+            <a asp-controller="Stores" asp-action="Details" asp-route-id="@Model?.StaffId">Store Details</a>
+        </div>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StaffId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StaffId)
+        </dd>
+
+        <div>
+            <a asp-controller="Staff" asp-action="Details" asp-route-id="@Model?.StaffId">Staff Details</a>
+        </div>
+
+        <h4>Order Items</h4>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        ItemId
+                    </th>
+                    <th>
+                        ProductId
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                    <th>
+                        ListPrice
+                    </th>
+                    <th>
+                        Discount
+                    </th>
+                    <th>
+                        SubTotal
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    decimal total = 0;
+                }
+                @foreach (var item in Model.OrderItems)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ItemId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ListPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Discount)
+                        </td>
+                        <td>
+                            @{
+                                decimal subtotal = item.ListPrice * item.Quantity;
+                                decimal totalDiscount = 1 - item.Discount;
+                                subtotal *= totalDiscount;
+
+                                total += subtotal;
+                            }
+                            $@subtotal
+                        </td>
+
+                        <td>
+                            <a asp-controller="Products" asp-action="Details" asp-route-id="@item.ProductId">Product
+                                Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <dt class="col-sm-2">
+            Total: 
+        </dt>
+        <dd class="col-sm-10">
+            $@total
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.OrderId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

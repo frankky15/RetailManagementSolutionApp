@@ -32,6 +32,7 @@ builder.Services.AddTransient<IStockRepository, StockRepository>();
 builder.Services.AddTransient<IStoreRepository, StoreRepository>();
 //Service
 builder.Services.AddTransient<IProductionService, ProductionService>();
+builder.Services.AddTransient<ISalesService, SalesService>();
 
 var app = builder.Build();
 
