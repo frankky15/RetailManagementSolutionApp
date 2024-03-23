@@ -38,7 +38,7 @@ namespace RMS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("CategoryId,CategoryName")] Category category)
+        public IActionResult Create([Bind("CategoryName")] Category category)
         {
             if (!_productionService.AddCategory(category))
                 return View(category);

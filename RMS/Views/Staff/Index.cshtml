@@ -1,0 +1,52 @@
+﻿@model IEnumerable<RMS.Models.Staff>
+
+@{
+    ViewData["Title"] = "Stores";
+}
+
+<h1>Stores</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StaffId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StoreId)
+            </th>
+            <th>
+                FullName
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StaffId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StoreId)
+                </td>
+                <td>
+                    @item.FirstName @item.LastName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.StaffId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.StaffId">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

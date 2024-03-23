@@ -38,7 +38,7 @@ namespace RMS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("BrandId,BrandName")] Brand brand)
+        public IActionResult Create([Bind("BrandName")] Brand brand)
         {
             if (!_productionService.AddBrand(brand))
                 return View(brand);
