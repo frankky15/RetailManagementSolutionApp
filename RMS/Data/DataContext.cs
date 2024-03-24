@@ -90,6 +90,15 @@ namespace RMS.Data
                 entity.HasOne(d => d.Manager).WithMany(p => p.InverseManager).HasConstraintName("FK__staffs__manager___44FF419A");
 
                 entity.HasOne(d => d.Store).WithMany(p => p.Staff).HasConstraintName("FK__staffs__store_id__440B1D61");
+
+                entity.HasOne(d => d.User).WithOne(p => p.Staff).HasForeignKey<Staff>(d => d.UserId).HasConstraintName("FK_AspNetUsers_staffs_staff_id");
+            });
+
+            modelBuilder.Entity<ApplicationUser>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_AspNetUsers");
+
+                entity.HasOne(d => d.Staff).WithOne(p => p.User).HasForeignKey<Staff>(d => d.UserId).HasConstraintName("FK_AspNetUsers_staffs_staff_id");
             });
 
             modelBuilder.Entity<Stock>(entity =>

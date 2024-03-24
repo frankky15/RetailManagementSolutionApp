@@ -144,7 +144,8 @@ public class SalesService : ISalesService
             .Include(s => s.InverseManager)
             .Include(s => s.Manager)
             .Include(s => s.Orders)
-            .Include(s => s.Store);
+            .Include(s => s.Store)
+            .Include(s => s.User);
     }
 
     public IEnumerable<Staff> GetStaffWhere(Expression<Func<Staff, bool>> where)
@@ -153,7 +154,8 @@ public class SalesService : ISalesService
             .Include(s => s.InverseManager)
             .Include(s => s.Manager)
             .Include(s => s.Orders)
-            .Include(s => s.Store);
+            .Include(s => s.Store)
+            .Include(s => s.User);
     }
 
     public Staff GetStaffById(int id)
@@ -165,7 +167,8 @@ public class SalesService : ISalesService
             .Include(s => s.InverseManager)
             .Include(s => s.Manager)
             .Include(s => s.Orders)
-            .Include(s => s.Store).First();
+            .Include(s => s.Store)
+            .Include(s => s.User).First();
     }
 
     public bool AddStaff(Staff staff)
