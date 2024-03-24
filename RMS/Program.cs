@@ -10,16 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<AuthenticationContext>(options =>
+builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<AuthenticationContext>();
-builder.Services.AddDbContext<DataContext>(options =>
-    options.UseSqlServer(connectionString));
+    .AddEntityFrameworkStores<DataContext>();
+
 builder.Services.AddControllersWithViews();
+
 //Repository
 builder.Services.AddTransient<IBrandRepository, BrandRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
@@ -30,6 +30,7 @@ builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IStaffRepository, StaffRepository>();
 builder.Services.AddTransient<IStockRepository, StockRepository>();
 builder.Services.AddTransient<IStoreRepository, StoreRepository>();
+
 //Service
 builder.Services.AddTransient<IProductionService, ProductionService>();
 builder.Services.AddTransient<ISalesService, SalesService>();
@@ -75,7 +76,7 @@ using (var scope = app.Services.CreateScope()) // Seed Roles
 
 using (var scope = app.Services.CreateScope()) // Whitelist Admins
 {
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
     var adminsWhitelist = new[] { "admin1@admin.com" };
 

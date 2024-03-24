@@ -1,7 +1,13 @@
-﻿namespace RMS.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace RMS.Models;
 
 public partial class Staff : EntityModel
 {
+    [Column("user_id")]
+    public string? UserId { get; set; }
+    public ApplicationUser? User { get; set; }
+
     public override bool IsValid()
     {
         if (StoreId == 0)

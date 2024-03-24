@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using RMS.Models;
 
 namespace RMS.Data
 {
-    public partial class DataContext : DbContext
+    public partial class DataContext : IdentityDbContext<ApplicationUser>
     {
         public DataContext(DbContextOptions<DataContext> options)
             : base(options)
@@ -27,10 +29,12 @@ namespace RMS.Data
         public virtual DbSet<Stock> Stocks { get; set; }
 
         public virtual DbSet<Store> Stores { get; set; }
-        
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Brand>(entity =>
             {
                 entity.HasKey(e => e.BrandId).HasName("PK__brands__5E5A8E273BB2C54D");
