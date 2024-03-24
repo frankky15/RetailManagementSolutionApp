@@ -6,6 +6,10 @@
 
 <h3>Product: @Model.ProductName (Id:@Model.ProductId) Stock</h3>
 
+<div>
+    <a asp-controller="Products" asp-action="Details" asp-route-id="@Model.ProductId">Product Details</a>
+</div>
+
 <table class="table">
     <thead>
         <tr>

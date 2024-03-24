@@ -52,6 +52,43 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ZipCode)
         </dd>
+
+        <h4>Staff</h4>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        StaffId
+                    </th>
+                    <th>
+                        FirstName
+                    </th>
+                    <th>
+                        LastName
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Staff)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StaffId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            <a asp-controller="Staff" asp-action="Details" asp-route-id="@item.StaffId">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </dl>
 </div>
 <div>

@@ -45,7 +45,19 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.StoreId)
+            <a asp-controller="Stores" asp-action="Details" asp-route-id="@Model.StoreId">Details</a>
         </dd>
+
+        @if (Model.User != null)
+        {
+            <dt class="col-sm-2">
+                User
+            </dt>
+            <dd class="col-sm-10">
+                @Model.User.Email
+            </dd>
+        }
+
         @if (Model.Manager != null)
         {
             <dt class="col-sm-2">
@@ -58,7 +70,42 @@
 
         @if (Model.InverseManager.Count() != 0)
         {
-            
+            <h4>In Charge of</h4>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StaffId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LastName)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.InverseManager)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StaffId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.StaffId">Details</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         }
     </dl>
 </div>

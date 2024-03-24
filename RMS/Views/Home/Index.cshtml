@@ -1,8 +1,18 @@
-﻿@{
+﻿@using RMS.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center p-5 m-5">
+    <h1 class="display-4">Welcome to the RMS</h1>
+    <h3 class="display-6">(Retail Management Solution)</h3>
+
+    @if (!SignInManager.IsSignedIn(User))
+    {
+        <p>Please <a asp-area="Identity" asp-page="/Account/Login">Login</a> with your User to
+            start using.</p>
+    }
 </div>
