@@ -14,7 +14,7 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<DataContext>();
 
@@ -78,7 +78,23 @@ using (var scope = app.Services.CreateScope()) // Whitelist Admins
 {
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-    var adminsWhitelist = new[] { "admin1@admin.com" };
+    string email = "admin1@admin.com";
+    string password = "Admin1.";
+
+    if (await userManager.FindByEmailAsync(email) == null)
+    {
+        var user = new ApplicationUser()
+        {
+            UserName = email,
+            Email = email
+        };
+
+        await userManager.CreateAsync(user, password);
+
+        await userManager.AddToRoleAsync(user, "Admin");
+    }
+
+    var adminsWhitelist = new[] { email };
 
     foreach (var admin in adminsWhitelist)
     {

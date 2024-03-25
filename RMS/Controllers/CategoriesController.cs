@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RMS.Models;
 using RMS.Services;
 
 namespace RMS.Controllers
 {
+    [Authorize]
     public class CategoriesController : Controller
     {
         private readonly ILogger<CategoriesController> _logger;

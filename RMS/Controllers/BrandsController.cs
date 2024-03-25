@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RMS.Models;
 using RMS.Services;
 
 namespace RMS.Controllers
 {
+    [Authorize]
     public class BrandsController : Controller
     {
         private readonly ILogger<BrandsController> _logger;

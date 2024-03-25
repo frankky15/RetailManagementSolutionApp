@@ -1,4 +1,8 @@
 ﻿@model RMS.Models.Staff
+@using RMS.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Staff Details";
@@ -47,15 +51,26 @@
             @Html.DisplayFor(model => model.StoreId)
             <a asp-controller="Stores" asp-action="Details" asp-route-id="@Model.StoreId">Details</a>
         </dd>
-
+        <dt class="col-sm-2">
+            User
+        </dt>
         @if (Model.User != null)
         {
-            <dt class="col-sm-2">
-                User
-            </dt>
             <dd class="col-sm-10">
                 @Model.User.Email
             </dd>
+        }
+        else
+        {
+            @if (SignInManager.IsSignedIn(User))
+            {
+                @if (User.IsInRole("Admin"))
+                {
+                    <dd class="col-sm-10">
+                        User not registred, <a asp-area="Identity" asp-page="/Account/Register" asp-route-StaffId="@Model.StaffId">Register User</a>
+                    </dd>
+                }
+            }
         }
 
         @if (Model.Manager != null)
