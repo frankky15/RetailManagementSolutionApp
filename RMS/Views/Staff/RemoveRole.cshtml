@@ -1,0 +1,16 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+
+@{
+    ViewData["Title"] = "Remove Role";
+}
+
+<h1>Remove Role</h1>
+
+<h3>Are you sure you want to remove this role?</h3>
+<div>    
+    <form asp-action="RemoveRole">
+        <input type="hidden" asp-for="Name" value="@ViewBag.Role"/>
+        <input type="submit" value="Remove Role" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

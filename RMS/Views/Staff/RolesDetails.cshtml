@@ -1,0 +1,25 @@
+﻿@model RMS.Models.Staff
+@using RMS.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Manage Roles";
+}
+
+<h1>Roles</h1>
+<a asp-action="AddRole" asp-route-id="@Model.StaffId">Add Role</a>
+<div>
+    <ul>
+        @foreach (var role in ViewBag.Roles)
+        {
+            <li class="p-1">
+                @role <a asp-action="RemoveRole" asp-route-id="@Model.StaffId" asp-route-role="@role">Remove</a>
+            </li>
+        }
+    </ul>
+</div>
+<div>
+    <a asp-action="Details" asp-route-Id="@Model.StaffId">Back to Details</a>
+</div>

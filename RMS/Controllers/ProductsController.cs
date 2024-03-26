@@ -101,7 +101,7 @@ namespace RMS.Controllers
                 return NotFound();
 
             if (!_productionService.DeleteProduct(product))
-                return BadRequest("Failed to delete the product.");
+                return BadRequest("Error: Failed to delete the product.");
 
             return RedirectToAction(nameof(Index));
         }

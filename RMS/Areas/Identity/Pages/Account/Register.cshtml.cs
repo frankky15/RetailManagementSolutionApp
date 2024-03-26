@@ -31,7 +31,6 @@ namespace RMS.Areas.Identity.Pages.Account
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
         private readonly ISalesService _salesService;
 
         public RegisterModel(
@@ -39,7 +38,6 @@ namespace RMS.Areas.Identity.Pages.Account
             IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender,
             ISalesService salesService)
         {
             _userManager = userManager;
@@ -47,7 +45,6 @@ namespace RMS.Areas.Identity.Pages.Account
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
             _salesService = salesService;
         }
 
