@@ -6,7 +6,7 @@ using RMS.Services;
 
 namespace RMS.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,StoreManager")]
     public class OrdersController : Controller
     {
         private readonly ILogger<OrdersController> _logger;

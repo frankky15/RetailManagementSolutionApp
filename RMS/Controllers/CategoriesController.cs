@@ -5,7 +5,7 @@ using RMS.Services;
 
 namespace RMS.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,ProductManager")]
     public class CategoriesController : Controller
     {
         private readonly ILogger<CategoriesController> _logger;
@@ -68,6 +68,7 @@ namespace RMS.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             var category = _productionService.GetCategoryById(id);
@@ -80,6 +81,7 @@ namespace RMS.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirmed(int id)
         {
             var category = _productionService.GetCategoryById(id);

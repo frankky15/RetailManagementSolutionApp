@@ -5,7 +5,7 @@ using RMS.Services;
 
 namespace RMS.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,StockManager,Cashier,StoreManager")]
     public class StocksController : Controller
     {
         private readonly ILogger<StocksController> _logger;
@@ -34,6 +34,7 @@ namespace RMS.Controllers
             return View(product);
         }
 
+        [Authorize(Roles = "Admin,StockManager")]
         public IActionResult Edit(int id)
         {
             var storeId = 1; // Change based on the user's store.
@@ -47,6 +48,7 @@ namespace RMS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,StockManager")]
         public IActionResult Edit(int id, [Bind("ProductId,StoreId,Quantity")] Stock stock)
         {
             if (!_productionService.UpdateStock(stock))

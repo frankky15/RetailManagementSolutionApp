@@ -9,7 +9,7 @@ using RMS.Services;
 
 namespace RMS.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Cashier")]
     public class PosController : Controller
     {
         private readonly ILogger<PosController> _logger;

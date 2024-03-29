@@ -6,7 +6,7 @@ using RMS.Services;
 
 namespace RMS.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,ProductManager")]
     public class ProductsController : Controller
     {
         private readonly ILogger<ProductsController> _logger;
@@ -81,6 +81,7 @@ namespace RMS.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             var product = _productionService.GetProductById(id);
@@ -93,6 +94,7 @@ namespace RMS.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirmed(int id)
         {
             var product = _productionService.GetProductById(id);
