@@ -177,7 +177,7 @@ namespace RMS.Controllers
             if (!result.Succeeded)
                 Console.WriteLine("Error: There was a problem while trying to remove a role from a user.");
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(RolesDetails), new { id });
         }
     }
 }

@@ -1,0 +1,125 @@
+@model RMS.Models.Order
+
+@{
+    ViewData["Title"] = "Point of Sale";
+}
+
+<div class="h2">Order</div>
+
+<div style="display: flex;">
+
+    <div style="flex: 2;" class="p-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        ProductName
+                    </th>
+                    <th>
+                        ListPrice
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                    <th>
+                        Discount
+                    </th>
+                    <th>
+                        SubTotal
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    decimal total = 0;
+                }
+                @if (Model != null)
+                {
+                    foreach (var item in Model.OrderItems)
+                    {
+                        <tr>
+                            <td>
+                                @{
+                                    var productName = "";
+                                    foreach (var product in ViewBag.Products)
+                                    {
+                                        if (product.Value == item.ProductId.ToString())
+                                        {
+                                            productName = product.Text;
+                                            break;
+                                        }
+                                    }
+                                }
+                                @productName
+                            </td>
+                            <td>
+                                $@item.ListPrice
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Discount)
+                            </td>
+                            <td>
+                                @{
+                                    decimal listPrice = 0;
+                                    foreach (var product in ViewBag.Prices)
+                                    {
+                                        if (product.Value == item.ProductId.ToString())
+                                        {
+                                            Decimal.TryParse(product.Text, out listPrice);
+                                            break;
+                                        }
+                                    }
+
+                                    decimal subtotal = listPrice * item.Quantity;
+                                    decimal totalDiscount = 1 - item.Discount;
+                                    subtotal *= totalDiscount;
+
+                                    total += subtotal;
+                                }
+
+                                $@subtotal.ToString("0.00")
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.ItemId">Edit</a> |
+                                <a asp-action="Remove" asp-route-id="@item.ItemId">Remove</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        <div>
+            <div class="col-md-4 p-2 border border-secondary rounded-2">
+                <span class="h6">Total: </span> $@total.ToString("0.00")
+            </div>
+            <a asp-action="Discard" class="btn btn-danger mt-2">Discard Order</a>
+        </div>
+    </div>
+
+    <div style="flex: 1;" class="p-3 border-start border-secondary-subtle">
+        <div class="h5">Add Item</div>
+        <div class="row">
+            <form asp-action="Index">
+                <div class="form-group pt-1">
+                    <label for="ProductId pt-1" class="control-label">Product</label>
+                    <select name="ProductId" class="form-control" asp-items="ViewBag.Products"></select>
+                </div>
+                <div class="form-group pt-1 col-md-4">
+                    <label for="Quantity" class="control-label">Quantity</label>
+                    <input type="number" min="1" step="1" name="Quantity" class="form-control" value="1" />
+                </div>
+                <div class="form-group pt-1 col-md-4">
+                    <label for="Discount" class="control-label">Discount</label>
+                    <input type="number" min="0" max="1" step="0.01" name="Discount" class="form-control" value="0" />
+                </div>
+                <div class="form-group pt-2">
+                    <input type="submit" value="Add Item" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+﻿@model RMS.Models.Order
+
+@{
+    ViewData["Title"] = "Discard Order";
+}
+
+<div class="h2">Discard Order</div>
+
+<h3>Are you sure you want to discard the order?</h3>
+
+<form asp-action="Discard">
+    <input type="submit" value="Discard" class="btn btn-danger" /> |
+    <a asp-action="Index">Back to POS</a>
+</form>
