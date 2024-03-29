@@ -52,7 +52,6 @@ namespace RMS.Controllers
             var products = _productionService.GetProducts().ToList();
 
             ViewData["Products"] = new SelectList(products, "ProductId", "ProductName");
-            ViewData["Prices"] = new SelectList(products, "ProductId", "ListPrice");
 
             return View(order);
         }
@@ -79,12 +78,17 @@ namespace RMS.Controllers
                 };
             }
 
+            var product = _productionService.GetProductById(ProductId);
+            if (product == null)
+                return BadRequest("Error: Couldn't find the product with that productId.");
+
             var orderItem = new OrderItem()
             {
-                ItemId = order.OrderItems.Count(),
+                ItemId = order.OrderItems.Count() + 1,
                 ProductId = ProductId,
                 Quantity = Quantity,
-                Discount = Discount
+                Discount = Discount,
+                ListPrice = product.ListPrice
             };
 
             order.OrderItems.Add(orderItem);
@@ -93,7 +97,6 @@ namespace RMS.Controllers
             var products = _productionService.GetProducts().ToList();
 
             ViewData["Products"] = new SelectList(products, "ProductId", "ProductName");
-            ViewData["Prices"] = new SelectList(products, "ProductId", "ListPrice");
 
             return View(order);
         }
@@ -159,6 +162,40 @@ namespace RMS.Controllers
         [HttpPost, ActionName("Discard")]
         public IActionResult DiscardComfirmed()
         {
+            HttpContext.Session.SetObjectASJson("Order", null);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Commit()
+        {
+            var order = HttpContext.Session.GetObjectFromJson<Order>("Order");
+            if (order == null)
+                return BadRequest("Error: There is no order to commit.");
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Commit([Bind("FirstName,LastName,Phone,Email,Street,City,State,ZipCode")] Customer customer,
+        DateOnly OrderDate, DateOnly RequiredDate)
+        {
+            var registredCustomer = _salesService.GetCustomersWhere(c => c.Email == customer.Email);
+            if (registredCustomer.Count() > 0)
+                customer = registredCustomer.First();
+
+            var order = HttpContext.Session.GetObjectFromJson<Order>("Order");
+            if (order == null)
+                return BadRequest("Error: There is no order to commit.");
+
+            order.OrderDate = OrderDate;
+            order.RequiredDate = RequiredDate;
+            order.Customer = customer;
+            HttpContext.Session.SetObjectASJson("Order", order);
+
+            if (!_salesService.AddOrder(order))
+                return View(customer);
+
             HttpContext.Session.SetObjectASJson("Order", null);
 
             return RedirectToAction(nameof(Index));
