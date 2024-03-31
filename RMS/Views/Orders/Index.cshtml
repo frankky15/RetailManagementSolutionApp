@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Orders";
+
+    var sortedOrders = Model.OrderByDescending(o => o.OrderId);
 }
 
 <h1>Orders</h1>
@@ -26,8 +28,8 @@
             </th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var item in Model)
+    <tbody>e
+        @foreach (var item in sortedOrders)
         {
             <tr>
                 <td>
