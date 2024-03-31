@@ -1,11 +1,26 @@
 ﻿@model IEnumerable<RMS.Models.Stock>
 
-
 @{
     ViewData["Title"] = "Stock";
 }
 
-<h1>Stock</h1>
+<div class="h1">Stock <span class="h5 text-success">(Admin)</span></div>
+
+<form id="storeForm" asp-action="AdminIndex">
+    <div class="form-group p-1 col-md-1">
+        <label for="StoreId" class="control-label">Select Store</label>
+        <select id="storeDropdown" name="StoreId" class="form-control" asp-items="ViewBag.Stores"></select>
+    </div>
+</form>
+
+<script>
+    const dropdown = document.getElementById('storeDropdown');
+    const form = document.getElementById('storeForm');
+
+    dropdown.addEventListener('change', function () {
+        form.submit();
+    });
+</script>
 
 <table class="table">
     <thead>

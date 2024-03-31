@@ -53,9 +53,9 @@
         </div>
 
         @{
-            var dateToday = DateTime.Today;
+            var dateToday = DateTime.Today.ToShortDateString();
         }
-        <input type="hidden" name="OrderDate" value="dateToday" />
+        <input type="hidden" name="OrderDate" value="@dateToday" />
         <div class="form-group pt-1 col-md-4">
             <label for="RequiredDate" class="control-label">RequiredDate</label>
             <input type="date" name="RequiredDate" class="form-control" />

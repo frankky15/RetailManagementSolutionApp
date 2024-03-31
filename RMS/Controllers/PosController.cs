@@ -1,4 +1,5 @@
 using System.Text;
+using System.Transactions;
 using Extensions.Session;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -63,8 +64,6 @@ namespace RMS.Controllers
             if (order == null)
             {
                 var user = await _userManager.GetUserAsync(User);
-                if (user == null)
-                    return BadRequest("Error: Couldn't get the user.");
 
                 if (user.StaffId == null)
                     return BadRequest("Error: Users that aren't staff members can't add orders.");
