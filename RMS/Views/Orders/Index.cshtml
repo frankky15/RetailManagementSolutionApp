@@ -1,4 +1,5 @@
-﻿@model IEnumerable<RMS.Models.Order>
+﻿@using RMS.Models
+@model IEnumerable<RMS.Models.Order>
 
 @{
     ViewData["Title"] = "Orders";
@@ -48,7 +49,11 @@
                     @Html.DisplayFor(modelItem => item.RequiredDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.OrderStatus)
+                    @{
+                        int orderCode = item.OrderStatus;
+                        var orderStatus = (OrderStatus)orderCode;
+                    }
+                    @orderStatus (Code:@orderCode)
                 </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.OrderId">Details</a> |

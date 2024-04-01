@@ -1,4 +1,5 @@
-﻿@model RMS.Models.Order
+﻿@using RMS.Models
+@model RMS.Models.Order
 
 @{
     ViewData["Title"] = "Order Details";
@@ -36,7 +37,12 @@
             @Html.DisplayNameFor(model => model.OrderStatus)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.OrderStatus)
+            @{
+                int orderCode = Model.OrderStatus;
+                var orderStatus = (OrderStatus)orderCode;
+            }
+            @orderStatus (Code:@orderCode)
+            <a asp-action="UpdateStatus" asp-route-id="@Model?.OrderId">Update</a>
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.OrderDate)
@@ -64,7 +70,7 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.StoreId)
-            <a asp-controller="Stores" asp-action="Details" asp-route-id="@Model?.StaffId">Details</a>
+            <a asp-controller="Stores" asp-action="Details" asp-route-id="@Model?.StoreId">Details</a>
         </dd>
 
         <dt class="col-sm-2">

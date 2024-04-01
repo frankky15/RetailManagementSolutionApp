@@ -59,5 +59,31 @@ namespace RMS.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult UpdateStatus(int id)
+        {
+            var order = _salesService.GetOrderById(id);
+
+            if (order == null)
+                return NotFound();
+
+            return View(order);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateStatus(int id, int Status)
+        {
+            var order = _salesService.GetOrderById(id);
+
+            if (order == null)
+                return NotFound();
+
+            order.OrderStatus = (byte)Status;
+
+            if (!_salesService.UpdateOrder(order))
+                return BadRequest("Error: Couldn't update the order status.");
+
+            return RedirectToAction(nameof(Index), new { id });
+        }
     }
 }
