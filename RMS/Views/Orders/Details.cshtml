@@ -39,7 +39,7 @@
         <dd class="col-sm-10">
             @{
                 int orderCode = Model.OrderStatus;
-                var orderStatus = (OrderStatus)orderCode;
+                var orderStatus = (OrderStatusEnum)orderCode;
             }
             @orderStatus (Code:@orderCode)
             <a asp-action="UpdateStatus" asp-route-id="@Model?.OrderId">Update</a>

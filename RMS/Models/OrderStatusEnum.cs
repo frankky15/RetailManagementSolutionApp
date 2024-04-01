@@ -1,6 +1,6 @@
 namespace RMS.Models;
 
-public enum OrderStatus
+public enum OrderStatusEnum
 {
     AwaitingPickup = 1, //The order is ready for pickup by the customer.
     Shipped = 2, //The order has been shipped out for delivery.

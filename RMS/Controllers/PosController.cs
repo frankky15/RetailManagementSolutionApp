@@ -190,6 +190,7 @@ namespace RMS.Controllers
             order.OrderDate = OrderDate;
             order.RequiredDate = RequiredDate;
             order.Customer = customer;
+            order.OrderStatus = (byte)OrderStatusEnum.Pending;
             HttpContext.Session.SetObjectASJson("Order", order);
 
             if (!_salesService.AddOrder(order))

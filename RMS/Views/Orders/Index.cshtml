@@ -51,7 +51,7 @@
                 <td>
                     @{
                         int orderCode = item.OrderStatus;
-                        var orderStatus = (OrderStatus)orderCode;
+                        var orderStatus = (OrderStatusEnum)orderCode;
                     }
                     @orderStatus (Code:@orderCode)
                 </td>

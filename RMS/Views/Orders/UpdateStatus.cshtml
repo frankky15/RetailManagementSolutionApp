@@ -14,7 +14,7 @@
         <form asp-action="UpdateStatus">
             <div class="form-group">
                 <label for="Status" class="control-label">Select Store</label>
-                <select name="Status" class="form-control" asp-items="Html.GetEnumSelectList<OrderStatus>()"></select>
+                <select name="Status" class="form-control" asp-items="Html.GetEnumSelectList<OrderStatusEnum>()"></select>
             </div>
             <div class="form-group pt-1">
                 <input type="submit" value="Create" class="btn btn-primary" />
